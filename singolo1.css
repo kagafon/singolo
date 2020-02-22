@@ -251,32 +251,32 @@ h1.logo::after {
   transform: rotate(-90deg);
 }
 
-.footer {
+.content {
   height: calc(500px - 6px);
 
   background-color: #f2f2f2;
   border-bottom: 6px solid white;
 }
 
-.footer-content {
+.content-description {
   display: grid;
 
   grid-template-columns: repeat(3, 320px);
   grid-template-rows: repeat(2, 123px);
 }
 
-.footer-title {
+.content-title {
   height: 215px;
 }
 
-.footer-block {
+.content-block {
   display: grid;
   height: 125px;
 
   grid-template-columns: 70px 240px;
 }
 
-.footer-title-header {
+.content-title-header {
   padding-top: 69px;
 
   font-weight: 900;
@@ -288,12 +288,12 @@ h1.logo::after {
   letter-spacing: -0.2px;
 }
 
-.footer-title-content {
-  padding-top: 25px;
+.content-title-description {
+  padding-top: 27px;
 
   font-weight: 700;
   font-size: 17px;
-  line-height: 31px;
+  line-height: 30px;
   font-family: "Lato-Thin", sans-serif;
   text-align: justify;
   color: #767e9e;
@@ -363,7 +363,7 @@ h1.logo::after {
   background-position-y: 11px;
 }
 
-.block-description {
+.block-content {
   flex-direction: column;
   padding: 0 10px 25px;
 }
@@ -377,8 +377,9 @@ h1.logo::after {
   letter-spacing: -1.1px;
 }
 
-.block-content {
+.block-description {
   padding: 7px 0;
+  overflow: hidden;
 
   font-weight: 900;
   font-size: 12px;
