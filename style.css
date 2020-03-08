@@ -125,7 +125,8 @@ body {
 
 
 .section__header {
-  padding-top: 65px;
+  padding-top: 64px;
+  padding-bottom: 1px;
 }
 
 .section__header__title {
@@ -139,12 +140,15 @@ body {
 }
 
 .section__header__description {
-  padding-top: 20px;
+  padding-top: 21px;
 
   font-weight: normal;
   font-size: 1.125rem;
   line-height: 1.9rem;
   text-align: justify;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-height: 3.8rem;
 }
 
 .section__content {
@@ -160,7 +164,7 @@ body {
 }
 
 .layout-4-column > * {
-  flex-basis: 23.5%;
+  flex-basis: 220px;
 }
 
 .layout-3-column {
@@ -224,7 +228,7 @@ body {
   transition: background-position-x 0s;
 }
 
-.slider__control_right > a:hover {
+.slider__control_right:hover {
   background-position-x: 16px;
 
   transition: background-position-x 1s;
@@ -411,7 +415,6 @@ body {
 .info-block__description {
   padding: 12px 0;
   overflow: hidden;
-
   font-weight: 900;
   font-size: 0.8rem;
   line-height: 1.37rem;
@@ -419,6 +422,10 @@ body {
   color: #767e9e;
   letter-spacing: -0.03rem;
   text-overflow: ellipsis;
+  max-height: 5rem;
+  padding-bottom: 2px;
+  margin-bottom: 8px;
+  box-sizing: border-box;
 }
 
 .section_portfolio {
@@ -436,7 +443,7 @@ body {
 .gallery__filter {
   display: flex;
   align-self: flex-start;
-  padding-top: 1.5px;
+  padding-top: 1px;
   padding-bottom: 9px;
 }
 
@@ -557,7 +564,7 @@ body {
 .gallery__item_project10 {
   background-image: url("assets/Project6.svg");
   background-repeat: no-repeat;
-  background-position: -142px -103px;
+  background-position: -140px -102px;
   background-clip: content-box;
 }
 
@@ -576,7 +583,7 @@ body {
 }
 
 /* hide all gallery__items after 12 + filter item */
-.gallery__item:nth-child(n+14) {
+.gallery__item:nth-child(n+13) {
   display: none;
   width: 0;
   height: 0;
@@ -593,7 +600,7 @@ body {
 }
 
 .about {
-  padding: 45px 0 0;
+  padding: 43px 0 0;
 }
 
 .about__item {
@@ -623,7 +630,7 @@ body {
 
 .about__item__name {
   max-width: 300px;
-  padding-top: 11.5px;
+  padding-top: 11px;
   overflow: hidden;
 
   font-weight: bold;
@@ -700,7 +707,7 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   min-width: 619px;
-  padding-top: 44px;
+  padding-top: 43px;
 }
 
 .get-a-quote-form__field {
@@ -769,7 +776,7 @@ body {
   display: flex;
   flex-direction: column;
   align-self: flex-start;
-  padding-top: 42px;
+  padding-top: 40.5px;
   padding-left: 21px;
 
   font-weight: 900;
@@ -891,6 +898,10 @@ html {
   margin-left: 0;
 
   letter-spacing: -0.03rem;
+}
+
+.about__item:nth-child(3) .about__item__photo {
+  margin-left: 1px;
 }
 
 .about__item__summary > span {
