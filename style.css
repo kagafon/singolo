@@ -799,7 +799,7 @@ body {
 .contact-info__footer {
   display: flex;
   flex-direction: column;
-  padding-top: 20px;
+  padding-top: 21px;
 
   font-size: 0.75rem;
   line-height: 1.35rem;
