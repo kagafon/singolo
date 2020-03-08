@@ -423,7 +423,7 @@ body {
   letter-spacing: -0.03rem;
   text-overflow: ellipsis;
   max-height: 5rem;
-  padding-bottom: 2px;
+  padding-bottom: 4px;
   margin-bottom: 8px;
   box-sizing: border-box;
 }
