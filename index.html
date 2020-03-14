@@ -11,7 +11,7 @@
             <h1 class="header__logo">singolo</h1>
             <nav class="header__navigation">
                 <ul>
-                    <li class="header__navigation__item"><a href="#">home</a></li>
+                    <li class="header__navigation__item"><a href="#home">home</a></li>
                     <li class="header__navigation__item"><a href="#services">services</a></li>
                     <li class="header__navigation__item"><a href="#portfolio">portfolio</a></li>
                     <li class="header__navigation__item"><a href="#about-us">about</a></li>
@@ -20,24 +20,20 @@
             </nav>
         </header>
         <main>
-            <div class="modal-window">
-                <div class="modal-window__field modal-window__field_title">Письмо отправлено</div>
-                <div class="modal-window__field modal-window__field_subject"></div>
-                <div class="modal-window__field modal-window__field_description"></div>
-                <button class="modal-window__field modal-window__field_close">OK</button>
-            </div>
-            <section class="section section_slider">
+            <section class="section section_slider" id="home">
                 <div class="section__content slider">
                     <a href="#" class="slider__control slider__control_left"></a>
                     <div class="slider__content">
                         <div class="slide slide_1 slide_active">
                             <div class="iphone iphone-vertical">
                                 <div class="iphone__frame"></div>
+                                <div class="iphone__button"></div>
                                 <div class="iphone__screen iphone__screen_yellow"></div>
                                 <div class="iphone__shadow"></div>
                             </div>
                             <div class="iphone iphone-horizontal">
                                 <div class="iphone__frame"></div>
+                                <div class="iphone__button"></div>
                                 <div class="iphone__screen iphone__screen_blue"></div>
                                 <div class="iphone__shadow"></div>
                             </div>
@@ -45,7 +41,7 @@
                         <div class="slide slide_2" >
                             <div class="iphone iphone-left-shift iphone-small"></div>
                             <div class="iphone iphone-right-shift iphone-small"></div>
-                            <div class="iphone iphone-vertical-slide-2"></div>                                                      
+                            <div class="iphone iphone-vertical-slide-2"></div>
                         </div>
                     </div>
                     <div class="slider__control slider__control_right"><a href="#"></a></div>
@@ -104,32 +100,32 @@
                 </div>
             </section>
             <section class="section section_portfolio" id="portfolio">
-                <div class="section__header">
+                <div class="section__header portfolio_wrapper">
                     <h2 class="section__header__title">Portfolio</h2>
                     <div class="section__header__description">
                         Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
                     </div>
                 </div>
                 <div class="section__content gallery">
-                    <div class="gallery__filter">
-                        <button class="gallery__filter__button gallery__filter__button_active">all</button>
-                        <button class="gallery__filter__button">web design</button>
-                        <button class="gallery__filter__button">graphic design</button>
-                        <button class="gallery__filter__button">artwork</button>
+                    <div class="gallery__filter portfolio_wrapper">
+                        <button class="gallery__filter__button gallery__filter__button_active" data-filter="all">all</button>
+                        <button class="gallery__filter__button" data-filter="webDesign">web design</button>
+                        <button class="gallery__filter__button" data-filter="graphicDesign">graphic design</button>
+                        <button class="gallery__filter__button" data-filter="artwork">artwork</button>
                     </div>
                     <div class="gallery__content layout-4-column">
-                        <div class="gallery__item gallery__item_portfolio-1"></div>
-                        <div class="gallery__item gallery__item_portfolio-2"></div>
-                        <div class="gallery__item gallery__item_portfolio-3"></div>
-                        <div class="gallery__item gallery__item_portfolio-4"></div>
-                        <div class="gallery__item gallery__item_portfolio-5"></div>
-                        <div class="gallery__item gallery__item_portfolio-6"></div>
-                        <div class="gallery__item gallery__item_portfolio-7"></div>
-                        <div class="gallery__item gallery__item_portfolio-8"></div>
-                        <div class="gallery__item gallery__item_portfolio-9"></div>
-                        <div class="gallery__item gallery__item_portfolio-10"></div>
-                        <div class="gallery__item gallery__item_portfolio-11"></div>
-                        <div class="gallery__item gallery__item_portfolio-12"></div>
+                        <img class="gallery__item" src="assets/portfolio-1.png" alt="Portfolio 1">
+                        <img class="gallery__item" src="assets/portfolio-2.png" alt="Portfolio 2">
+                        <img class="gallery__item" src="assets/portfolio-3.png" alt="Portfolio 3">
+                        <img class="gallery__item" src="assets/portfolio-4.png" alt="Portfolio 4">
+                        <img class="gallery__item" src="assets/portfolio-5.png" alt="Portfolio 5">
+                        <img class="gallery__item" src="assets/portfolio-6.png" alt="Portfolio 6">
+                        <img class="gallery__item" src="assets/portfolio-7.png" alt="Portfolio 7">
+                        <img class="gallery__item" src="assets/portfolio-8.png" alt="Portfolio 8">
+                        <img class="gallery__item" src="assets/portfolio-9.png" alt="Portfolio 9">
+                        <img class="gallery__item" src="assets/portfolio-10.png" alt="Portfolio 10">
+                        <img class="gallery__item" src="assets/portfolio-11.png" alt="Portfolio 11">
+                        <img class="gallery__item" src="assets/portfolio-12.png" alt="Portfolio 12">
                     </div>
                 </div>
             </section>
@@ -218,6 +214,14 @@
                 <a class="social-contact__item social-contact__item_linkedin" href="#"></a>
             </div>
         </footer>
+        <div class="modal-window">
+            <div class="modal-window__body">
+                <div class="modal-window__field modal-window__field_title">Письмо отправлено</div>
+                <div class="modal-window__field modal-window__field_subject"></div>
+                <div class="modal-window__field modal-window__field_description"></div>
+                <button class="modal-window__field modal-window__field_close">OK</button>
+            </div>
+        </div>
         <script src="script.js"></script>
     </body>
 </html>

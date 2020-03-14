@@ -58,19 +58,22 @@ body {
 
 .section::before {
   content: "";
+
   display: block;
   height: 95px;
   margin-top: -95px;
+
   visibility: hidden;
 }
 
 .header {
   position: sticky;
+  top: 0;
+  z-index: 100;
+
   flex-direction: row;
   align-items: center;
   height: 95px;
-  top: 0;
-  z-index: 100;
 
   color: white;
 
@@ -155,15 +158,15 @@ body {
 }
 
 .section__header__description {
+  max-height: 3.8rem;
   padding-top: 21px;
+  overflow: hidden;
 
   font-weight: normal;
   font-size: 1.125rem;
   line-height: 1.9rem;
   text-align: justify;
   text-overflow: ellipsis;
-  overflow: hidden;
-  max-height: 3.8rem;
 }
 
 .section__content {
@@ -199,17 +202,20 @@ body {
 .section_slider {
   flex-direction: row;
   padding: 0;
+
   background-color: #f06c64;
   border: none;
 }
 
 .slider {
   position: relative;
+
   flex-basis: 100%;
   box-sizing: border-box;
   height: 600px;
-  border: none;
   overflow: hidden;
+
+  border: none;
 }
 
 .slider__control {
@@ -218,9 +224,10 @@ body {
 }
 
 .slider__control_left {
+  left: 40px;
+
   width: 16px;
   height: 30px;
-  left: 40px;
 
   background-image: url("assets/chev_left.svg");
   background-repeat: repeat-x;
@@ -236,9 +243,11 @@ body {
 }
 
 .slider__control_right {
+  right: 40px;
+
   width: 16px;
   height: 30px;
-  right: 40px;
+
   background-image: url("assets/chev_right.svg");
   background-repeat: repeat-x;
   background-position: center;
@@ -253,66 +262,74 @@ body {
 }
 
 .slider__content {
-  display: block;
   position: relative;
+
+  display: block;
+  flex-basis: 100%;
   align-self: stretch;
   overflow: hidden;
-  flex-basis: 100%;
+
   background-color: transparent;
 }
 
 .slide {
   position: absolute;
+
   display: inline-block;
-
-  height: 100%;
   box-sizing: border-box;
-
   width: 0;
+  height: 100%;
 }
 
 .slide_1 {
+  left: -1020px;
+
   background-color: #f06c64;
   border-bottom: 6px solid #ea676b;
-
-  left: -1020px;
 }
 
 .slide_2 {
   background-color: #648bf0;
   border-bottom: 6px solid #759bfc;
-
 }
 
 .slide_move-to-left {
   left: -1020px;
-  flex-basis: 0;
   z-index: 20;
+
+  flex-basis: 0;
   width: 1020px;
+
   transform: translateX(1020px);
+
   transition: transform 1s ease-out;
 }
 
 .slide_move-to-right {
   left: 1020px;
-  flex-basis: 0;
   z-index: 20;
+
+  flex-basis: 0;
   width: 1020px;
+
   transform: translateX(-1020px);
+
   transition: transform 1s ease-out;
 }
 
 .slide_transition {
   z-index: 50;
-  flex-basis: 100%;
-  transition: transform 2s linear;
 
+  flex-basis: 100%;
+
+  transition: transform 2s linear;
 }
 
 .slide_active {
   left: 0;
-  width: 1020px;
   z-index: 10;
+
+  width: 1020px;
 }
 
 .slide_hide-right {
@@ -320,13 +337,14 @@ body {
 }
 
 .slide_hide-left {
-  flex-basis: 0;
   z-index: -1;
+
+  flex-basis: 0;
 }
 
 .iphone {
-  height: 483px;
   width: 240px;
+  height: 483px;
 }
 
 .iphone__frame {
@@ -344,6 +362,19 @@ body {
   background-position-x: 0;
   background-position-y: 0;
   border-radius: 27px;
+}
+
+.iphone__button {
+  position: absolute;
+  top: 408px;
+  left: 87px;
+  z-index: 30;
+
+  width: 42px;
+  height: 42px;
+
+  background-color: transparent;
+  border-radius: 21px;
 }
 
 .iphone__shadow {
@@ -368,12 +399,13 @@ body {
 }
 
 .iphone-vertical-slide-2 {
-
   position: absolute;
+  top: 43px;
+  left: 383px;
+
   width: 255px;
   height: 513px;
-  left: 383px;
-  top: 43px;
+
   background-color: transparent;
   background-image: url("assets/phone-vertical-slide-2.svg");
   background-repeat: no-repeat;
@@ -381,18 +413,20 @@ body {
 
 .iphone-left-shift {
   position: absolute;
+  top: 152px;
+  left: 252px;
+
   width: 156px;
   height: 314px;
-  left: 252px;
-  top: 152px;
 }
 
 .iphone-right-shift {
   position: absolute;
+  top: 152px;
+  left: 612px;
+
   width: 156px;
   height: 314px;
-  left: 612px;
-  top: 152px;
 }
 
 .iphone-small {
@@ -412,77 +446,91 @@ body {
 
 .iphone__screen::after {
   opacity: 1;
+
   transition: opacity 0.5s linear;
 }
 
 
 .iphone__screen_green::after {
+  content: " ";
   position: inherit;
   top: 0;
   right: 0.5px;
   bottom: 0;
   left: 0;
+
   background-image: url("assets/phone-vertical-display-green.png");
   background-repeat: no-repeat;
   background-position-x: center;
   background-position-y: 0;
-  content: " ";
 }
 
 .iphone__screen_yellow::after {
+  content: " ";
   position: inherit;
   top: 0;
   right: 0.5px;
   bottom: 0;
   left: 0;
+
   background-image: url("assets/phone-vertical-display.png");
   background-repeat: no-repeat;
   background-position-x: center;
   background-position-y: 0;
-  content: " ";
 }
 
 .iphone-horizontal {
   position: absolute;
-  left: 425px;
   top: 174px;
+  left: 425px;
+
   width: 483px;
   height: 240px;
 }
 
 .iphone-horizontal > .iphone__frame {
-  background-image: url("assets/phone-horizontal.svg");
-  height: 215px;
   width: 458px;
+  height: 215px;
+
+  background-image: url("assets/phone-horizontal.svg");
+}
+
+.iphone-horizontal > .iphone__button {
+  top: 87px;
+  left: 9px;
 }
 
 .iphone-horizontal > .iphone__shadow {
-  background-image: url("assets/phone-horizontal-shadow.png");
-  height: 240px;
   width: 483px;
+  height: 240px;
+
+  background-image: url("assets/phone-horizontal-shadow.png");
 }
 
 .iphone-horizontal > .iphone__screen {
   top: 13.5px;
   left: 60px;
+
   width: 333px;
   height: 188px;
 }
 
 .iphone__screen_blue::after {
+  content: " ";
   position: inherit;
   top: 1px;
   right: 0;
   bottom: 0;
   left: 0;
+
   background-image: url("assets/phone-horizontal-display.png");
   background-repeat: no-repeat;
   background-position: 0 0;
-  content: " ";
 }
 
 .iphone__screen_blackout::after {
   opacity: 0;
+
   transition: opacity 0.5s linear;
 }
 
@@ -569,8 +617,13 @@ body {
 }
 
 .info-block__description {
+  box-sizing: border-box;
+  max-height: 5rem;
+  margin-bottom: 8px;
   padding: 12px 0;
+  padding-bottom: 4px;
   overflow: hidden;
+
   font-weight: 900;
   font-size: 0.8rem;
   line-height: 1.37rem;
@@ -578,21 +631,24 @@ body {
   color: #767e9e;
   letter-spacing: -0.03rem;
   text-overflow: ellipsis;
-  max-height: 5rem;
-  padding-bottom: 4px;
-  margin-bottom: 8px;
-  box-sizing: border-box;
 }
 
 .section_portfolio {
+  padding: 0 30px;
+
   background-color: #2d303a;
   border-color: #323746;
+}
+
+.portfolio_wrapper {
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 .gallery {
   flex-direction: column;
   height: 620px;
-  padding-top: 8.5px;
+  padding-top: 8px;
   padding-bottom: 90px;
 }
 
@@ -635,12 +691,6 @@ body {
   border-color: #e6e6e6;
 }
 
-.gallery__filter__button: {
-  color: #c5c5c5;
-
-  border-color: #c5c5c5;
-}
-
 .gallery__filter__button:active {
   color: #f2f2f279;
 
@@ -656,117 +706,26 @@ body {
 }
 
 .gallery__item {
-  height: 187px;
+  flex-basis: 230px;
   box-sizing: border-box;
+  height: 197px;
+  margin: 5px;
+
   background-repeat: no-repeat;
   background-position: center;
   background-clip: content-box;
-  margin: 10px;
+  border: 5px solid transparent;
+  border-radius: 5px;
+
+  transition: border-color 0.2s ease-out;
 }
 
 .gallery__item_active {
   border: 5px solid #f06c64;
-  margin: 5px;
-  height: 197px;
-  flex-basis: 230px;
 }
 
-.gallery__item:nth-child(4n+4).gallery__item_active {
-  margin-right: -5px;
-}
-
-.gallery__item:nth-child(4n+1).gallery__item_active {
-  margin-left: -5px;
-}
-
-.gallery__item:nth-child(4n+4){
-  margin-right: 0;
-}
-
-.gallery__item:nth-child(4n+1){
-  margin-left: 0;
-}
-
-.gallery__item_portfolio-1 {
-  background-image: url("assets/portfolio-1.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-clip: content-box;
-}
-
-.gallery__item_portfolio-2 {
-  background-image: url("assets/portfolio-2.png");
-  background-repeat: no-repeat;
-  background-clip: content-box;
-}
-
-.gallery__item_portfolio-3 {
-  background-image: url("assets/portfolio-3.png");
-  background-repeat: no-repeat;
-  background-clip: content-box;
-}
-
-.gallery__item_portfolio-4 {
-  background-image: url("assets/portfolio-4.png");
-  background-repeat: no-repeat;
-  background-clip: content-box;
-}
-
-.gallery__item_portfolio-5 {
-  background-image: url("assets/portfolio-5.png");
-  background-repeat: no-repeat;
-  background-clip: content-box;
-}
-
-.gallery__item_portfolio-6 {
-  background-image: url("assets/portfolio-6.png");
-  background-repeat: no-repeat;
-  background-clip: content-box;
-}
-
-.gallery__item_portfolio-7 {
-  background-image: url("assets/portfolio-7.png");
-  background-repeat: no-repeat;
-  background-clip: content-box;
-}
-
-.gallery__item_portfolio-8 {
-  background-image: url("assets/portfolio-8.png");
-  background-repeat: no-repeat;
-  background-clip: content-box;
-}
-
-.gallery__item_portfolio-9 {
-  background-image: url("assets/portfolio-9.png");
-  background-repeat: no-repeat;
-  background-clip: content-box;
-}
-
-.gallery__item_portfolio-10 {
-  background-image: url("assets/portfolio-10.png");
-  background-repeat: no-repeat;
-  /* background-position: -140px -102px; */
-  background-clip: content-box;
-}
-
-.gallery__item_portfolio-11 {
-  background-image: url("assets/portfolio-11.png");
-  background-repeat: no-repeat;
-  /* background-position: -144px -165px; */
-  background-clip: content-box;
-}
-
-.gallery__item_portfolio-12 {
-  background-image: url("assets/portfolio-12.png");
-  background-repeat: no-repeat;
-  /* background-position: -37px -51px; */
-  background-clip: content-box;
-}
-
-.gallery__item_hidden {
-  display: none;
-  width: 0;
-  height: 0;
+.disable-transition-helper {
+  transition: none;
 }
 
 /* hide all gallery__items after 12 + filter item */
@@ -1048,25 +1007,45 @@ body {
 
 .modal-window {
   position: fixed;
-  display: none;
-  height: 0;
-  width: 0;
-  flex-grow: 0;
-  background-color: #f2f2f2;
-  border-radius: 5px;
-  border: 1px solid #323746;
+  top: 0;
+  left: 0;
+  z-index: -1;
 
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+  font-size: 1.1rem;
+  color: #666d89;
+
+  background-color: #9e222254;
+  opacity: 0;
+
+  transition: opacity 0.5s ease-out;
 }
 
 .modal-window_shown {
-  top: calc(50% - 200px);
-  left: calc(50% - 300px);
   z-index: 100;
+
   display: flex;
+
+  opacity: 1;
+}
+
+.modal-window__body {
+  display: flex;
+  flex-grow: 0;
   flex-direction: column;
   align-content: stretch;
-  min-height: 400px;
-  width: 600px;
+  width: 500px;
+  padding: 10px 5px 5px;
+
+  background-color: #f2f2f2;
+  border: 2px solid #323746;
+  border-radius: 5px;
 }
 
 .modal-window__field {
@@ -1074,27 +1053,40 @@ body {
 }
 
 .modal-window__field_title {
-  text-align: center;
   font-weight: 900;
+  text-align: center;
+  color: #666d89;
 }
 
 .modal-window__field_description {
-  overflow-y: auto;
-  max-height: 400px;
   flex-grow: 1;
+  max-height: 400px;
+  overflow-y: auto;
 }
 
 .modal-window__field_close {
-  outline: none;
-  border-radius: 3px;
-  font-family: "Lato", sans-serif;
-  background-color: #d66c6c;
-  color: black;
-  font-weight: 900;
-  border: 1px solid #d66c6c;
-  margin: 7px;
   align-self: center;
-  width: 70px;
+  min-width: 70px;
+  margin: 7px;
+  padding: 5px;
+
+  font-weight: 900;
+  font-family: "Lato", sans-serif;
+  color: #666d89;
+
+  background-color: #2d303a;
+  border: 1px solid #2d303a;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+
+  transition: min-width 0.5s ease-in, border-radius 0.5s ease-in;
+}
+
+.modal-window__field_close:hover {
+  min-width: 40px;
+
+  border-radius: 35px;
 }
 
 /* Adjustments for perfect pixel */
