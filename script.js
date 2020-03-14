@@ -18,21 +18,6 @@ const setOnlyOneActive = (element, selectClassName, container, activeClassName) 
     element.classList.add(activeClassName);
 }
 
-/* Navigation */
-document.querySelector(".header__navigation > ul").addEventListener("click", (event) => {
-    if (event.target.parentElement.classList.contains("header__navigation__item")){
-        let href = event.target.getAttribute("href")
-        if (href.startsWith("#") && href.length > 1){
-            const targetElement = document.getElementById(href.substring(1));
-            if (targetElement){
-                let scrollOffset = targetElement.offsetTop - document.querySelector("header").clientHeight;
-                    window.scrollTo(0, scrollOffset);
-                    event.preventDefault();
-            }
-        }
-    }
-});
-
 /* Screen blackout */
 document.querySelectorAll(".iphone__button").forEach(btn => btn.addEventListener("click", (event) => {
     btn.parentElement.querySelector(".iphone__screen").classList.toggle("iphone__screen_blackout");
@@ -129,7 +114,7 @@ window.onscroll = () => {
         const href = el.getAttribute("href")
         if (href.startsWith("#") && href.length > 1){
             let targetElement = document.getElementById(href.substring(1));
-            if (targetElement && pageYOffset + 95 >= targetElement.offsetTop){
+            if (targetElement && (pageYOffset + innerHeight / 2) >= targetElement.offsetTop){
                 setOnlyOneActive(el.parentElement, "header__navigation__item");
             }
         }
