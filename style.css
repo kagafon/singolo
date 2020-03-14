@@ -39,7 +39,7 @@
 }
 
 body {
-  max-width: 1020px;
+  width: 1020px;
   margin: 0 auto;
 
   font-family: "Lato", sans-serif;
@@ -56,10 +56,21 @@ body {
   border-bottom: 6px solid;
 }
 
+.section::before {
+  content: "";
+  display: block;
+  height: 95px;
+  margin-top: -95px;
+  visibility: hidden;
+}
+
 .header {
+  position: sticky;
   flex-direction: row;
   align-items: center;
   height: 95px;
+  top: 0;
+  z-index: 100;
 
   color: white;
 
@@ -120,9 +131,13 @@ body {
 }
 
 .header__navigation__item > a:hover {
-  color: #f06c64;
+  color: #e43930;
 }
 
+.header__navigation__item_active > a {
+  color: #f06c64;
+  text-decoration: none;
+}
 
 .section__header {
   padding-top: 64px;
@@ -159,8 +174,9 @@ body {
 .layout-4-column {
   display: flex;
   flex-grow: 1;
+  flex-shrink: 0;
   flex-wrap: wrap;
-  justify-content: space-between;
+  align-content: flex-start;
 }
 
 .layout-4-column > * {
@@ -173,6 +189,7 @@ body {
   flex-wrap: wrap;
   justify-content: space-between;
   align-content: flex-start;
+  padding-top: 24px;
 }
 
 .layout-3-column > * {
@@ -181,28 +198,29 @@ body {
 
 .section_slider {
   flex-direction: row;
-  height: 600px;
-
+  padding: 0;
   background-color: #f06c64;
-  border-bottom: 6px solid #ea676b;
+  border: none;
 }
 
 .slider {
+  position: relative;
   flex-basis: 100%;
-
-  border-right: 1px solid #f06c64;
-  border-left: 2px solid #f06c64;
+  box-sizing: border-box;
+  height: 600px;
+  border: none;
+  overflow: hidden;
 }
 
 .slider__control {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  position: absolute;
+  z-index: 30;
 }
 
 .slider__control_left {
   width: 16px;
   height: 30px;
+  left: 40px;
 
   background-image: url("assets/chev_left.svg");
   background-repeat: repeat-x;
@@ -220,7 +238,7 @@ body {
 .slider__control_right {
   width: 16px;
   height: 30px;
-
+  right: 40px;
   background-image: url("assets/chev_right.svg");
   background-repeat: repeat-x;
   background-position: center;
@@ -235,23 +253,94 @@ body {
 }
 
 .slider__content {
+  display: block;
   position: relative;
-
+  align-self: stretch;
+  overflow: hidden;
   flex-basis: 100%;
+  background-color: transparent;
+}
+
+.slide {
+  position: absolute;
+  display: inline-block;
+
+  height: 100%;
+  box-sizing: border-box;
+
+  width: 0;
+}
+
+.slide_1 {
+  background-color: #f06c64;
+  border-bottom: 6px solid #ea676b;
+
+  left: -1020px;
+}
+
+.slide_2 {
+  background-color: #648bf0;
+  border-bottom: 6px solid #759bfc;
+
+}
+
+.slide_move-to-left {
+  left: -1020px;
+  flex-basis: 0;
+  z-index: 20;
+  width: 1020px;
+  transform: translateX(1020px);
+  transition: transform 1s ease-out;
+}
+
+.slide_move-to-right {
+  left: 1020px;
+  flex-basis: 0;
+  z-index: 20;
+  width: 1020px;
+  transform: translateX(-1020px);
+  transition: transform 1s ease-out;
+}
+
+.slide_transition {
+  z-index: 50;
+  flex-basis: 100%;
+  transition: transform 2s linear;
+
+}
+
+.slide_active {
+  left: 0;
+  width: 1020px;
+  z-index: 10;
+}
+
+.slide_hide-right {
+  margin-left: 1020px;
+}
+
+.slide_hide-left {
+  flex-basis: 0;
+  z-index: -1;
+}
+
+.iphone {
+  height: 483px;
+  width: 240px;
 }
 
 .iphone__frame {
   position: absolute;
   top: 0;
-  left: -1px;
+  left: 0;
   z-index: 20;
 
-  width: 217px;
-  height: 462px;
+  width: 216px;
+  height: 458px;
   margin: 0;
 
   background-color: transparent;
-  background-image: url("assets/iPhone.svg");
+  background-image: url("assets/phone-vertical.svg");
   background-position-x: 0;
   background-position-y: 0;
   border-radius: 27px;
@@ -274,60 +363,127 @@ body {
 
 .iphone-vertical {
   position: absolute;
-  top: -245px;
-  left: 54px;
+  top: 54px;
+  left: 112px;
+}
+
+.iphone-vertical-slide-2 {
+
+  position: absolute;
+  width: 255px;
+  height: 513px;
+  left: 383px;
+  top: 43px;
+  background-color: transparent;
+  background-image: url("assets/phone-vertical-slide-2.svg");
+  background-repeat: no-repeat;
+}
+
+.iphone-left-shift {
+  position: absolute;
+  width: 156px;
+  height: 314px;
+  left: 252px;
+  top: 152px;
+}
+
+.iphone-right-shift {
+  position: absolute;
+  width: 156px;
+  height: 314px;
+  left: 612px;
+  top: 152px;
+}
+
+.iphone-small {
+  background-image: url("assets/iphone-small.svg");
 }
 
 .iphone__screen {
   position: absolute;
-  top: 62.5px;
-  left: 11.8px;
+  top: 65.5px;
+  left: 14px;
   z-index: 30;
 
   box-sizing: border-box;
-  width: 194px;
-  height: 339px;
-
-  border: 3px solid #c5c5c5;
-  border-radius: 3px;
+  width: 188px;
+  height: 333px;
 }
 
-.iphone__screen_yellow {
-  background-image: url("assets/Screen1.svg");
+.iphone__screen::after {
+  opacity: 1;
+  transition: opacity 0.5s linear;
+}
+
+
+.iphone__screen_green::after {
+  position: inherit;
+  top: 0;
+  right: 0.5px;
+  bottom: 0;
+  left: 0;
+  background-image: url("assets/phone-vertical-display-green.png");
   background-repeat: no-repeat;
-  background-position-x: -14px;
-  background-position-y: -134.6px;
+  background-position-x: center;
+  background-position-y: 0;
+  content: " ";
+}
+
+.iphone__screen_yellow::after {
+  position: inherit;
+  top: 0;
+  right: 0.5px;
+  bottom: 0;
+  left: 0;
+  background-image: url("assets/phone-vertical-display.png");
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: 0;
+  content: " ";
 }
 
 .iphone-horizontal {
   position: absolute;
-  top: -124.5px;
-  left: 827px;
+  left: 425px;
+  top: 174px;
+  width: 483px;
+  height: 240px;
+}
 
-  transform: rotate(90deg);
+.iphone-horizontal > .iphone__frame {
+  background-image: url("assets/phone-horizontal.svg");
+  height: 215px;
+  width: 458px;
 }
 
 .iphone-horizontal > .iphone__shadow {
-  top: -26px;
-
-  transform: scaleX(-1);
+  background-image: url("assets/phone-horizontal-shadow.png");
+  height: 240px;
+  width: 483px;
 }
 
 .iphone-horizontal > .iphone__screen {
-  top: 135px;
-  left: -60.4px;
-
-  width: 339px;
-  height: 194px;
-
-  transform: rotate(-90deg);
+  top: 13.5px;
+  left: 60px;
+  width: 333px;
+  height: 188px;
 }
 
-.iphone__screen_blue {
-  background-image: url("assets/Screen2.svg");
+.iphone__screen_blue::after {
+  position: inherit;
+  top: 1px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: url("assets/phone-horizontal-display.png");
   background-repeat: no-repeat;
-  background-position-x: -125.5px;
-  background-position-y: -119.4px;
+  background-position: 0 0;
+  content: " ";
+}
+
+.iphone__screen_blackout::after {
+  opacity: 0;
+  transition: opacity 0.5s linear;
 }
 
 .section_services {
@@ -479,6 +635,12 @@ body {
   border-color: #e6e6e6;
 }
 
+.gallery__filter__button: {
+  color: #c5c5c5;
+
+  border-color: #c5c5c5;
+}
+
 .gallery__filter__button:active {
   color: #f2f2f279;
 
@@ -495,91 +657,116 @@ body {
 
 .gallery__item {
   height: 187px;
-  padding: 10px 0;
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-clip: content-box;
+  margin: 10px;
 }
 
-.gallery__item_project1 {
-  background-image: url("assets/Project1.svg");
+.gallery__item_active {
+  border: 5px solid #f06c64;
+  margin: 5px;
+  height: 197px;
+  flex-basis: 230px;
+}
+
+.gallery__item:nth-child(4n+4).gallery__item_active {
+  margin-right: -5px;
+}
+
+.gallery__item:nth-child(4n+1).gallery__item_active {
+  margin-left: -5px;
+}
+
+.gallery__item:nth-child(4n+4){
+  margin-right: 0;
+}
+
+.gallery__item:nth-child(4n+1){
+  margin-left: 0;
+}
+
+.gallery__item_portfolio-1 {
+  background-image: url("assets/portfolio-1.png");
   background-repeat: no-repeat;
-  background-position: -8px -1px;
+  background-position: center;
   background-clip: content-box;
 }
 
-.gallery__item_project2 {
-  background-image: url("assets/Project4.svg");
+.gallery__item_portfolio-2 {
+  background-image: url("assets/portfolio-2.png");
   background-repeat: no-repeat;
-  background-position: -82px -33px;
   background-clip: content-box;
 }
 
-.gallery__item_project3 {
-  background-image: url("assets/Layer9.svg");
+.gallery__item_portfolio-3 {
+  background-image: url("assets/portfolio-3.png");
   background-repeat: no-repeat;
-  background-position: -11px 9px;
   background-clip: content-box;
 }
 
-.gallery__item_project4 {
-  background-image: url("assets/Project8.svg");
+.gallery__item_portfolio-4 {
+  background-image: url("assets/portfolio-4.png");
   background-repeat: no-repeat;
-  background-position: -24px 8px;
   background-clip: content-box;
 }
 
-.gallery__item_project5 {
-  background-image: url("assets/Project2.svg");
+.gallery__item_portfolio-5 {
+  background-image: url("assets/portfolio-5.png");
   background-repeat: no-repeat;
-  background-position: -10px -6px;
   background-clip: content-box;
 }
 
-.gallery__item_project6 {
-  background-image: url("assets/Project5.svg");
+.gallery__item_portfolio-6 {
+  background-image: url("assets/portfolio-6.png");
   background-repeat: no-repeat;
-  background-position: -16px 6px;
   background-clip: content-box;
 }
 
-.gallery__item_project7 {
-  background-image: url("assets/Layer11.svg");
+.gallery__item_portfolio-7 {
+  background-image: url("assets/portfolio-7.png");
   background-repeat: no-repeat;
-  background-position: -31px -29px;
   background-clip: content-box;
 }
 
-.gallery__item_project8 {
-  background-image: url("assets/Layer8.svg");
+.gallery__item_portfolio-8 {
+  background-image: url("assets/portfolio-8.png");
   background-repeat: no-repeat;
-  background-position: -24px -22px;
   background-clip: content-box;
 }
 
-.gallery__item_project9 {
-  background-image: url("assets/Project3.svg");
+.gallery__item_portfolio-9 {
+  background-image: url("assets/portfolio-9.png");
   background-repeat: no-repeat;
-  background-position: -16px 8px;
   background-clip: content-box;
 }
 
-.gallery__item_project10 {
-  background-image: url("assets/Project6.svg");
+.gallery__item_portfolio-10 {
+  background-image: url("assets/portfolio-10.png");
   background-repeat: no-repeat;
-  background-position: -140px -102px;
+  /* background-position: -140px -102px; */
   background-clip: content-box;
 }
 
-.gallery__item_project11 {
-  background-image: url("assets/Project7.svg");
+.gallery__item_portfolio-11 {
+  background-image: url("assets/portfolio-11.png");
   background-repeat: no-repeat;
-  background-position: -144px -165px;
+  /* background-position: -144px -165px; */
   background-clip: content-box;
 }
 
-.gallery__item_project12 {
-  background-image: url("assets/Project9.svg");
+.gallery__item_portfolio-12 {
+  background-image: url("assets/portfolio-12.png");
   background-repeat: no-repeat;
-  background-position: -37px -51px;
+  /* background-position: -37px -51px; */
   background-clip: content-box;
+}
+
+.gallery__item_hidden {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 /* hide all gallery__items after 12 + filter item */
@@ -859,64 +1046,58 @@ body {
   padding-right: 32px;
 }
 
+.modal-window {
+  position: fixed;
+  display: none;
+  height: 0;
+  width: 0;
+  flex-grow: 0;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  border: 1px solid #323746;
+
+}
+
+.modal-window_shown {
+  top: calc(50% - 200px);
+  left: calc(50% - 300px);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-content: stretch;
+  min-height: 400px;
+  width: 600px;
+}
+
+.modal-window__field {
+  margin: 10px;
+}
+
+.modal-window__field_title {
+  text-align: center;
+  font-weight: 900;
+}
+
+.modal-window__field_description {
+  overflow-y: auto;
+  max-height: 400px;
+  flex-grow: 1;
+}
+
+.modal-window__field_close {
+  outline: none;
+  border-radius: 3px;
+  font-family: "Lato", sans-serif;
+  background-color: #d66c6c;
+  color: black;
+  font-weight: 900;
+  border: 1px solid #d66c6c;
+  margin: 7px;
+  align-self: center;
+  width: 70px;
+}
 
 /* Adjustments for perfect pixel */
 html {
   font-size: 16px;
-}
-
-.slider > .slider__control {
-  margin-top: -4px;
-}
-
-.section_services .section__header {
-  padding-bottom: 26px;
-}
-
-.section_services .section__header__title {
-  margin-top: -1px;
-
-  letter-spacing: 0.004rem;
-}
-
-.service-info:nth-child(3),
-.service-info:nth-child(6) {
-  flex-basis: 300px;
-}
-
-.service-info:nth-child(3) .info-block__header {
-  padding-left: 2px;
-}
-
-.service-info:nth-child(6) .info-block__header {
-  padding-left: 2px;
-
-  letter-spacing: -0.03rem;
-}
-
-.gallery__filter__button:last-child {
-  margin-left: 0;
-
-  letter-spacing: -0.03rem;
-}
-
-.about__item:nth-child(3) .about__item__photo {
-  margin-left: 1px;
-}
-
-.about__item__summary > span {
-  letter-spacing: -0.007rem;
-}
-
-.about__item:nth-child(3) .about__item__name {
-  letter-spacing: 0.005rem;
-}
-
-.section_get-a-quote h2 {
-  margin-top: -1px;
-}
-
-.contact-info__footer__item:nth-child(1),
-.contact-info__footer__item:nth-child(3) {
-  letter-spacing: -0.005rem;
 }

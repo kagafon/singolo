@@ -20,19 +20,32 @@
             </nav>
         </header>
         <main>
+            <div class="modal-window">
+                <div class="modal-window__field modal-window__field_title">Письмо отправлено</div>
+                <div class="modal-window__field modal-window__field_subject"></div>
+                <div class="modal-window__field modal-window__field_description"></div>
+                <button class="modal-window__field modal-window__field_close">OK</button>
+            </div>
             <section class="section section_slider">
                 <div class="section__content slider">
                     <a href="#" class="slider__control slider__control_left"></a>
                     <div class="slider__content">
-                        <div class="iphone iphone-vertical">
-                            <div class="iphone__frame"></div>
-                            <div class="iphone__screen iphone__screen_yellow"></div>
-                            <div class="iphone__shadow"></div>
+                        <div class="slide slide_1 slide_active">
+                            <div class="iphone iphone-vertical">
+                                <div class="iphone__frame"></div>
+                                <div class="iphone__screen iphone__screen_yellow"></div>
+                                <div class="iphone__shadow"></div>
+                            </div>
+                            <div class="iphone iphone-horizontal">
+                                <div class="iphone__frame"></div>
+                                <div class="iphone__screen iphone__screen_blue"></div>
+                                <div class="iphone__shadow"></div>
+                            </div>
                         </div>
-                        <div class="iphone iphone-horizontal">
-                            <div class="iphone__frame"></div>
-                            <div class="iphone__screen iphone__screen_blue"></div>
-                            <div class="iphone__shadow"></div>
+                        <div class="slide slide_2" >
+                            <div class="iphone iphone-left-shift iphone-small"></div>
+                            <div class="iphone iphone-right-shift iphone-small"></div>
+                            <div class="iphone iphone-vertical-slide-2"></div>                                                      
                         </div>
                     </div>
                     <div class="slider__control slider__control_right"><a href="#"></a></div>
@@ -105,18 +118,18 @@
                         <button class="gallery__filter__button">artwork</button>
                     </div>
                     <div class="gallery__content layout-4-column">
-                        <div class="gallery__item gallery__item_project1"></div>
-                        <div class="gallery__item gallery__item_project2"></div>
-                        <div class="gallery__item gallery__item_project3"></div>
-                        <div class="gallery__item gallery__item_project4"></div>
-                        <div class="gallery__item gallery__item_project5"></div>
-                        <div class="gallery__item gallery__item_project6"></div>
-                        <div class="gallery__item gallery__item_project7"></div>
-                        <div class="gallery__item gallery__item_project8"></div>
-                        <div class="gallery__item gallery__item_project9"></div>
-                        <div class="gallery__item gallery__item_project10"></div>
-                        <div class="gallery__item gallery__item_project11"></div>
-                        <div class="gallery__item gallery__item_project12"></div>
+                        <div class="gallery__item gallery__item_portfolio-1"></div>
+                        <div class="gallery__item gallery__item_portfolio-2"></div>
+                        <div class="gallery__item gallery__item_portfolio-3"></div>
+                        <div class="gallery__item gallery__item_portfolio-4"></div>
+                        <div class="gallery__item gallery__item_portfolio-5"></div>
+                        <div class="gallery__item gallery__item_portfolio-6"></div>
+                        <div class="gallery__item gallery__item_portfolio-7"></div>
+                        <div class="gallery__item gallery__item_portfolio-8"></div>
+                        <div class="gallery__item gallery__item_portfolio-9"></div>
+                        <div class="gallery__item gallery__item_portfolio-10"></div>
+                        <div class="gallery__item gallery__item_portfolio-11"></div>
+                        <div class="gallery__item gallery__item_portfolio-12"></div>
                     </div>
                 </div>
             </section>
@@ -181,7 +194,7 @@
                         <input type="text" name="name" id="name" placeholder="Name (Required)" class="get-a-quote-form__field" required>
                         <input type="email" name="email" id="email" placeholder="Email (Required)" class="get-a-quote-form__field" required>
                         <input type="text" name="subject" id="subject" placeholder="Subject" class="get-a-quote-form__field">
-                        <textarea name="description" id="description" placeholder="Describe your project in detail..." class="get-a-quote-form__field get-a-quote-form__field_textarea"></textarea>
+                        <textarea name="description" id="description" placeholder="Describe your portfolio- in detail..." class="get-a-quote-form__field get-a-quote-form__field_textarea"></textarea>
                         <input type="submit" value="Submit" class="get-a-quote-form__field get-a-quote-form__field_submit">
                     </form>
                     <div class="contact-info">
@@ -205,5 +218,6 @@
                 <a class="social-contact__item social-contact__item_linkedin" href="#"></a>
             </div>
         </footer>
+        <script src="script.js"></script>
     </body>
 </html>
