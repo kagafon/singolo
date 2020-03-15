@@ -1094,4 +1094,5 @@ body {
 /* Adjustments for perfect pixel */
 html {
   font-size: 16px;
+  scroll-behavior: smooth;
 }

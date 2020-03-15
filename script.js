@@ -18,6 +18,21 @@ const setOnlyOneActive = (element, selectClassName, container, activeClassName) 
     element.classList.add(activeClassName);
 }
 
+/* Navigation */
+document.querySelector(".header__navigation > ul").addEventListener("click", (event) => {
+    if (event.target.parentElement.classList.contains("header__navigation__item")){
+        let href = event.target.getAttribute("href")
+        if (href.startsWith("#") && href.length > 1){
+            const targetElement = document.getElementById(href.substring(1));
+            if (targetElement){
+                window.scrollTo(0, targetElement.offsetTop - document.querySelector("header").clientHeight);
+                event.preventDefault();
+                setOnlyOneActive(event.target.parentElement, "header__navigation__item");
+            }
+        }
+    }
+})
+
 /* Screen blackout */
 document.querySelectorAll(".iphone__button").forEach(btn => btn.addEventListener("click", (event) => {
     btn.parentElement.querySelector(".iphone__screen").classList.toggle("iphone__screen_blackout");
@@ -108,16 +123,3 @@ document.querySelector(".get-a-quote-form").addEventListener("submit", (event) =
 document.querySelector(".modal-window__field_close").addEventListener('click', (event) =>{
     document.querySelector(".modal-window").classList.remove("modal-window_shown");
 });
-
-window.onscroll = () => {
-    document.querySelectorAll(".header__navigation__item > a").forEach(el => {
-        const href = el.getAttribute("href")
-        if (href.startsWith("#") && href.length > 1){
-            let targetElement = document.getElementById(href.substring(1));
-            if (targetElement && (pageYOffset + innerHeight / 2) >= targetElement.offsetTop){
-                setOnlyOneActive(el.parentElement, "header__navigation__item");
-            }
-        }
-    });
-}
-window.onscroll();
