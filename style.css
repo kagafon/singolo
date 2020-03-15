@@ -223,6 +223,7 @@ body {
 .slider__control {
   position: absolute;
   z-index: 30;
+  cursor: pointer;
 }
 
 .slider__control_left {
@@ -347,6 +348,7 @@ body {
 .iphone {
   width: 240px;
   height: 483px;
+  user-select: none;
 }
 
 .iphone__frame {
@@ -720,6 +722,7 @@ body {
   border-radius: 5px;
 
   transition: border-color 0.2s ease-out;
+  cursor: pointer;
 }
 
 .gallery__item_active {
