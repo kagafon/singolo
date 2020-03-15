@@ -9,8 +9,6 @@ let activeSlideIdx = 0;
 let disableSlideControls = false;
 
 /* Helpers */
-const disableBrowserOptimization = (element) => {return element.offsetWidth;};
-
 const setOnlyOneActive = (element, selectClassName, container, activeClassName) => {
     if (activeClassName === undefined) activeClassName = selectClassName + "_active";
     if (container === undefined) container = document;
@@ -39,35 +37,40 @@ document.querySelectorAll(".iphone__button").forEach(btn => btn.addEventListener
 }));
 
 /* Carousel */
-const createSlideHandler = (movingClass, slideOperation) => {
+const createSlideHandler = (direction) => {
     return slideHandler = (event) => {
         event.preventDefault();
         if (disableSlideControls) return;
         disableSlideControls = true;
         const currentSlide = slides[activeSlideIdx];
 
-        activeSlideIdx = slideOperation(activeSlideIdx);
+        activeSlideIdx += direction;
         if (activeSlideIdx < 0) activeSlideIdx += slides.length;
-        if (activeSlideIdx >=slides.length ) activeSlideIdx -= slides.length;
+        if (activeSlideIdx >= slides.length ) activeSlideIdx -= slides.length;
 
         let targetSlide = slides[activeSlideIdx];
         
-        const afterSlidingCleanup = () => {
-            currentSlide.classList.remove("slide_active");
+        targetSlide.style.left = (1020 * direction)+"px";
+        targetSlide.style.zIndex = 50; 
+        const animation = new Animation(new KeyframeEffect(targetSlide, [
+            {left: targetSlide.style.left},
+            {left: "0"}
+        ], {
+            duration: 700,
+            easing: "ease-out",
+        }));
+        animation.onfinish = () => {
             targetSlide.classList.add("slide_active");
-            targetSlide.classList.remove(movingClass);
-            targetSlide.removeEventListener("transitionend", afterSlidingCleanup);
+            currentSlide.classList.remove("slide_active");
+            targetSlide.style = "";
             disableSlideControls = false;
         };
-    
-        disableBrowserOptimization(targetSlide);
-        targetSlide.addEventListener("transitionend", afterSlidingCleanup);
-        targetSlide.classList.add(movingClass);    
+        animation.play();
     };
 }
 
-document.querySelector(".slider__control_left").addEventListener("click", createSlideHandler("slide_move-to-left", (x) => {return --x;}));
-document.querySelector(".slider__control_right").addEventListener("click", createSlideHandler("slide_move-to-right", (x) => {return ++x;}));
+document.querySelector(".slider__control_left").addEventListener("click", createSlideHandler(-1));
+document.querySelector(".slider__control_right").addEventListener("click", createSlideHandler(1));
 
 /* Gallery */
 const reloadGallery = (filter) => {
@@ -79,12 +82,17 @@ const reloadGallery = (filter) => {
         }
 
         galleryPlaceholders.forEach((placeholder, idx) => {
-            placeholder.style.transition = "none";
             placeholder.classList.remove("gallery__item_active")
-            placeholder.src = galleryImages[newGalleryOrder[idx]].src;
-            placeholder.alt = galleryImages[newGalleryOrder[idx]].alt;
-            disableBrowserOptimization(placeholder);
-            placeholder.removeAttribute("style");
+            placeholder.style.order = newGalleryOrder[idx];
+            placeholder.animate([
+                {opacity:0},
+                {src: galleryImages[currentGalleryOrder[idx]].src},
+                {src: galleryImages[newGalleryOrder[idx]].src},
+                {opacity: 1}
+            ], {
+                duration: 500,
+                easing: "ease-out",
+            });
             });
         currentGalleryOrder = newGalleryOrder;
     }
