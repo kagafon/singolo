@@ -334,6 +334,7 @@ body {
 
   background-color: transparent;
   border-radius: 21px;
+  cursor: pointer;
 }
 
 .iphone__shadow {
@@ -1013,7 +1014,11 @@ body {
 }
 
 .modal-window__field {
+  max-height: 80px;
   margin: 10px;
+  overflow-y: auto;
+
+  overflow-wrap: break-word;
 }
 
 .modal-window__field_title {
@@ -1024,8 +1029,10 @@ body {
 
 .modal-window__field_description {
   flex-grow: 1;
-  max-height: 400px;
+  max-height: 300px;
   overflow-y: auto;
+
+  overflow-wrap: break-word;
 }
 
 .modal-window__field_close {
