@@ -595,7 +595,7 @@ body {
 }
 
 .section_portfolio {
-  padding: 0 30px;
+  padding: 0 25px 0 30px;
 
   background-color: #2d303a;
   border-color: #323746;
