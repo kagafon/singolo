@@ -52,7 +52,7 @@ window.onscroll = () => {
         //Scrolling up
         Object.values(sectionPositions).some((x, idx) => {
             /* If top of section is visible - set it active */
-            if (x.top >= pageYOffset + headerSize && x.top < pageYOffset + innerHeight){
+            if (x.top >= pageYOffset && x.top < pageYOffset + innerHeight){
                 setOnlyOneActive(x.navItem, "header__navigation__item");
                 return true;
             }
