@@ -2,18 +2,7 @@ const slides = document.querySelectorAll(".slide");
 const slidesContainer = document.querySelector(".slider__content");
 const galleryItems = [...document.querySelectorAll(".gallery__item")];
 const galleryContainer = document.querySelector(".gallery__content");
-const sectionPositions = [...document.querySelectorAll(".header__navigation__item > a")].reduce((res, navItem) => {
-    let targetElement = document.getElementById(navItem.getAttribute("href").substring(1));
-    if (targetElement){
-        res[navItem.getAttribute("href")] = {
-            'top': targetElement.offsetTop, 
-            'height': targetElement.offsetHeight,
-            'bottom': targetElement.offsetTop + targetElement.offsetHeight,
-            'middle': targetElement.offsetTop + targetElement.offsetHeight/2,
-            'navItem': navItem.parentElement
-        }
-    }
-    return res;}, {});
+
 const headerSize = 95;
 let currentGalleryOrder = [...Array(12)].map((el, idx) => idx);
 let activeSlideIdx = 0;
@@ -28,31 +17,26 @@ const setOnlyOneActive = (element, selectClassName, container, activeClassName) 
     element.classList.add(activeClassName);
 };
 
-/* Navigation */
-document.querySelector(".header__navigation > ul").addEventListener("click", (event) => {
-    if (event.target.parentElement.classList.contains("header__navigation__item")){
-        let href = event.target.getAttribute("href")
-        if (href.startsWith("#") && href.length > 1){
-            const targetElement = document.getElementById(href.substring(1));
-            if (targetElement){
-                /* Some magic: if section size less than screen size (part of it) 
-                    then make section in the middle of the screen */
-                if (sectionPositions[href].height < innerHeight/2-headerSize){
-                    window.scrollTo(0, sectionPositions[href].middle - innerHeight / 2);
-                    event.preventDefault();
-                }
+const scrollHandler = () => {
+    let sectionsArray = [];
+    const sectionPositions =[...document.querySelectorAll(".header__navigation__item > a")].reduce((res, navItem) => {
+        let targetElement = document.getElementById(navItem.getAttribute("href").substring(1));
+        if (targetElement){
+            res[navItem.getAttribute("href")] = {
+                'top': targetElement.offsetTop, 
+                'height': targetElement.offsetHeight,
+                'bottom': targetElement.offsetTop + targetElement.offsetHeight,
+                'middle': targetElement.offsetTop + targetElement.offsetHeight/2,
+                'navItem': navItem.parentElement
             }
         }
-    }
-});
-
-window.onscroll = () => {
-    let sectionsArray = [];
+        return res;}, {});
     if (prevYOffset > pageYOffset){
         //Scrolling up
         Object.values(sectionPositions).some((x, idx) => {
             /* If top of section is visible - set it active */
-            if (x.top >= pageYOffset && x.top < pageYOffset + innerHeight){
+            if (x.top >= pageYOffset && x.top < pageYOffset + innerHeight
+                || x.top <= pageYOffset && x.bottom >= pageYOffset + innerHeight){
                 setOnlyOneActive(x.navItem, "header__navigation__item");
                 return true;
             }
@@ -91,7 +75,34 @@ window.onscroll = () => {
     }
     prevYOffset = pageYOffset;
 };
-window.onscroll();
+
+/* Navigation */
+document.querySelector(".header__navigation").addEventListener("click", (event) => {
+    if (event.target.parentElement.classList.contains("header__navigation__item")){
+        document.querySelector(".header__mobile-menu-btn").classList.remove("header__mobile-menu-btn_open");
+        document.querySelector(".header__navigation").classList.remove("header__navigation_shown");
+        document.querySelector(".header__logo").classList.remove("header__logo_mobile-menu-open");    
+    }
+});
+
+document.querySelector(".header__mobile-menu-btn").addEventListener("click", (event) => {
+    event.currentTarget.classList.toggle("header__mobile-menu-btn_open");
+    document.querySelector(".header__navigation").classList.toggle("header__navigation_shown");
+    document.querySelector(".header__logo").classList.toggle("header__logo_mobile-menu-open");
+    
+});
+
+window.addEventListener("resize", () => {
+    if (window.innerWidth >= 768){
+        document.querySelector(".header__mobile-menu-btn").classList.remove("header__mobile-menu-btn_open");
+        document.querySelector(".header__navigation").classList.remove("header__navigation_shown");
+        document.querySelector(".header__logo").classList.remove("header__logo_mobile-menu-open");    
+    }
+    scrollHandler();
+});
+
+window.addEventListener("scroll", scrollHandler);
+scrollHandler();
 
 /* Screen blackout */
 document.querySelectorAll(".iphone__button").forEach(btn => btn.addEventListener("click", (event) => {
@@ -112,7 +123,7 @@ const createSlideHandler = (direction) => {
 
         let targetSlide = slides[activeSlideIdx];
         
-        targetSlide.style.left = (1020 * direction)+"px";
+        targetSlide.style.left = (targetSlide.offsetWidth * direction)+"px";
         targetSlide.style.zIndex = 50; 
         const animation = new Animation(new KeyframeEffect(targetSlide, [
             {left: targetSlide.style.left},
@@ -166,12 +177,12 @@ document.querySelector(".gallery__filter").addEventListener("click", (event) => 
 });
 
 document.querySelector(".gallery__content").addEventListener("click", (event) => {
-    if (event.target.classList.contains("gallery__item")){
-        if (event.target.classList.contains("gallery__item_active")){
-            event.target.classList.remove("gallery__item_active");
+    if (event.target.parentElement.classList.contains("gallery__item")){
+        if (event.target.parentElement.classList.contains("gallery__item_active")){
+            event.target.parentElement.classList.remove("gallery__item_active");
         }
         else{
-            setOnlyOneActive(event.target, "gallery__item", event.currentTarget);
+            setOnlyOneActive(event.target.parentElement, "gallery__item", event.currentTarget);
         }
     }
 });
@@ -187,7 +198,7 @@ document.querySelector(".get-a-quote-form").addEventListener("submit", (event) =
     event.preventDefault();
 });
 
-document.querySelector(".modal-window__field_close").addEventListener('click', (event) =>{
+document.querySelector(".modal-window__close").addEventListener('click', (event) =>{
     document.querySelector(".modal-window").classList.remove("modal-window_shown");
     document.querySelector(".get-a-quote-form").reset();
 });
