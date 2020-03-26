@@ -215,7 +215,11 @@
     opacity: 0;
 
     transition: 0.2s ease-out;
-  }.header__navigation::before {
+  }
+  .header__navigation > .header__navigation__item {
+      display: none;
+  }
+  .header__navigation::before {
     content: "";
     position: fixed;
     top: 71px;
@@ -231,10 +235,16 @@
     transition: 0.2s ease-out;
   }.header__navigation_shown {
     display: block;
-    width: 278px;;
+    width: 278px;
 
     opacity: 1;
-  }.header__navigation_shown::before {
+  }
+  .header__navigation_shown > .header__navigation__item {
+    display: block;
+    width: auto;
+    text-align: left;
+}
+  .header__navigation_shown::before {
     left: 278px;;
 
     width: calc(100% - 278px);
