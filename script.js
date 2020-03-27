@@ -141,9 +141,15 @@ const createSlideHandler = (direction) => {
         animation.play();
     };
 };
-
-document.querySelector(".slider__control_left").addEventListener("click", createSlideHandler(-1));
-document.querySelector(".slider__control_right").addEventListener("click", createSlideHandler(1));
+if ("ontouchstart" in document.documentElement){
+    document.querySelector(".slider__control_left").addEventListener("touchend", createSlideHandler(-1));
+    document.querySelector(".slider__control_right").addEventListener("touchend", createSlideHandler(1));
+}
+else
+{
+    document.querySelector(".slider__control_left").addEventListener("click", createSlideHandler(-1));
+    document.querySelector(".slider__control_right").addEventListener("click", createSlideHandler(1));
+}
 
 /* Gallery */
 document.querySelector(".gallery__filter").addEventListener("click", (event) => {

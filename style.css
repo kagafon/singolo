@@ -215,11 +215,7 @@
     opacity: 0;
 
     transition: 0.2s ease-out;
-  }
-  .header__navigation > .header__navigation__item {
-      display: none;
-  }
-  .header__navigation::before {
+  }.header__navigation::before {
     content: "";
     position: fixed;
     top: 71px;
@@ -235,19 +231,15 @@
     transition: 0.2s ease-out;
   }.header__navigation_shown {
     display: block;
-    width: 278px;
+    width: 278px;;
 
     opacity: 1;
-  }
-  .header__navigation_shown > .header__navigation__item {
-    display: block;
-    width: auto;
-    text-align: left;
-}
-  .header__navigation_shown::before {
+  }.header__navigation_shown::before {
     left: 278px;;
 
     width: calc(100% - 278px);
+  }.header__navigation_shown .header__navigation__item {
+    display: block;
   }
 }.header__navigation__item {
   display: inline-block;
@@ -262,9 +254,11 @@
   padding: 0 14.5px;
 }@media screen and (max-width: 767px) {
   .header__navigation__item {
+    display: none;
     padding: 0 0 27px 71px;
 
     line-height: 1.8125rem;
+    text-align: left;
   }.header__navigation__item::before {
     display: none;
   }
@@ -557,18 +551,30 @@
   position: absolute;
 
   width: 15.3091265947vw;
+  max-width: 156px;
   height: 30.8145240432vw;
+  max-height: 314px;
 
   background-color: transparent;
   background-image: url("assets/iphone-small.svg");
   background-repeat: no-repeat;
   background-size: 100%;
 }.iphone-shift-left {
-  top: 25.3333333333%;
-  left: 24.7301275761%;
+  top: 152px;
+  left: 252px;
+}@media screen and (max-width: 1019px) {
+  .iphone-shift-left {
+    top: 25.3333333333%;
+    left: 24.7301275761%;
+  }
 }.iphone-shift-right {
-  top: 25.3333333333%;
-  left: 60.0588812561%;
+  top: 152px;
+  left: 612px;
+}@media screen and (max-width: 1019px) {
+  .iphone-shift-right {
+    top: 25.3333333333%;
+    left: 60.0588812561%;
+  }
 }.section_services {
   padding-bottom: 45px;
 
@@ -1164,4 +1170,4 @@
   background-image: url("assets/ico-twitter--nocircle.svg");
 }.social-contact__item_linkedin {
   background-image: url("assets/ico-linkedin--nocircle.svg");
-}
+}/*# sourceMappingURL=style.css.map */
